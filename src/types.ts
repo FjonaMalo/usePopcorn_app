@@ -19,5 +19,5 @@ export interface MovieProps {
   watched: MovieTypes[];
 }
 export interface MovieTypeProps {
-  movie: WatchedMovieType & MovieTypes;
+  movie: MovieTypes;
 }

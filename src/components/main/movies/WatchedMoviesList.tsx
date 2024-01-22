@@ -1,6 +1,6 @@
 import React from "react";
 import WatchedMovie from "./movieLists/WatchedMovie";
-import { WatchedProps } from "../../types";
+import { WatchedProps } from "../../../types";
 
 const WatchedMoviesList = ({ watched }: WatchedProps) => {
   return (

@@ -1,4 +1,4 @@
-import { WatchedProps } from "../../types";
+import { WatchedProps } from "../../../types";
 
 const WatchedSummary = ({ watched }: WatchedProps) => {
   const average = (arr: number[]) =>

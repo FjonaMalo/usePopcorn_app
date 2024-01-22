@@ -1,4 +1,4 @@
-import { MovieTypes, WatchedMovieType } from "./types";
+import { MovieTypes, WatchedMovieType } from "../types";
 
 export const tempMovieData: MovieTypes[] = [
   {

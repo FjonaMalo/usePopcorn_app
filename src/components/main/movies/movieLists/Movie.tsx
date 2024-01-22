@@ -1,6 +1,6 @@
-import { MovieTypeProps } from "../../../types";
+import { MovieTypeProps } from "../../../../types";
 
-const Movie = ({ movie }: any) => {
+const Movie = ({ movie }: MovieTypeProps) => {
   return (
     <li key={movie.imdbID}>
       <img src={movie.Poster} alt={`${movie.Title}`} />

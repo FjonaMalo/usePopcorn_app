@@ -1,7 +1,7 @@
 import React from "react";
-import { MovieTypeProps } from "../../../types";
+import { WatchedMovieType } from "../../../../types";
 
-const WatchedMovie = ({ movie }: any) => {
+const WatchedMovie = ({ movie }: { movie: WatchedMovieType }) => {
   console.log(movie);
 
   return (
