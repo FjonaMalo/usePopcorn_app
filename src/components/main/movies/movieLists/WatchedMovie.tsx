@@ -1,9 +1,6 @@
-import React from "react";
 import { WatchedMovieType } from "../../../../types";
 
 const WatchedMovie = ({ movie }: { movie: WatchedMovieType }) => {
-  console.log(movie);
-
   return (
     <li>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />

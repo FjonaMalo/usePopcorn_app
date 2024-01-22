@@ -1,11 +1,12 @@
+import { MoviesMainProps } from "../../types";
 import ListBox from "./ListBox";
 import WatchedBox from "./WatchedBox";
 
-const Main = () => {
+const Main = ({ movies }: MoviesMainProps) => {
   return (
     <div>
       <main className="main">
-        <ListBox />
+        <ListBox movies={movies} />
         <WatchedBox />
       </main>
     </div>

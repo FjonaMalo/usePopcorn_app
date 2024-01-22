@@ -21,3 +21,7 @@ export interface MovieProps {
 export interface MovieTypeProps {
   movie: MovieTypes;
 }
+
+export interface MoviesMainProps {
+  movies: MovieTypes[];
+}
