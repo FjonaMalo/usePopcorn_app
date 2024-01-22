@@ -1,16 +1,12 @@
-const WatchedSummary = ({ watched }: any) => {
-  const average = (arr: any[]) =>
+import { WatchedProps } from "../../types";
+
+const WatchedSummary = ({ watched }: WatchedProps) => {
+  const average = (arr: number[]) =>
     arr.reduce((acc, cur) => acc + cur / arr.length, 0);
 
-  const avgImdbRating = average(
-    watched.map((movie: { imdbRating: any }) => movie.imdbRating)
-  );
-  const avgUserRating = average(
-    watched.map((movie: { userRating: any }) => movie.userRating)
-  );
-  const avgRuntime = average(
-    watched.map((movie: { runtime: any }) => movie.runtime)
-  );
+  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
+  const avgUserRating = average(watched.map((movie) => movie.userRating));
+  const avgRuntime = average(watched.map((movie) => movie.runtime));
   return (
     <div>
       <div className="summary">

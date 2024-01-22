@@ -1,6 +1,9 @@
 import React from "react";
+import { MovieTypeProps } from "../../../types";
 
 const WatchedMovie = ({ movie }: any) => {
+  console.log(movie);
+
   return (
     <li>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />

@@ -2,10 +2,11 @@ import { useState } from "react";
 import { tempWatchedData } from "../DummyData";
 import WatchedSummary from "./movies/WatchedSummary";
 import WatchedMoviesList from "./movies/WatchedMoviesList";
+import { WatchedMovieType } from "../types";
 
 const WatchedBox = () => {
-  const [isOpen2, setIsOpen2] = useState(true);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [isOpen2, setIsOpen2] = useState<boolean>(true);
+  const [watched, setWatched] = useState<WatchedMovieType[]>(tempWatchedData);
 
   return (
     <div className="box">

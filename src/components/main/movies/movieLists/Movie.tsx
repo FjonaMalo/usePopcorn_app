@@ -1,3 +1,5 @@
+import { MovieTypeProps } from "../../../types";
+
 const Movie = ({ movie }: any) => {
   return (
     <li key={movie.imdbID}>

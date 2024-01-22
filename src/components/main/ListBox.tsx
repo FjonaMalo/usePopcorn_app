@@ -2,7 +2,7 @@ import { useState } from "react";
 import MovieList from "./movies/MovieList";
 
 const ListBox = () => {
-  const [isOpen1, setIsOpen1] = useState(true);
+  const [isOpen1, setIsOpen1] = useState<boolean>(true);
   return (
     <div className="box">
       <button
