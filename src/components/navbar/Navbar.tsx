@@ -1,18 +1,13 @@
 import "../../App.css";
-import { MoviesMainProps } from "../../types";
+import { ChildrenProps } from "../../types";
 import Logo from "./Logo";
-import NumResults from "./NumResults";
-import Search from "./Search";
 
-const Navbar = ({ movies }: MoviesMainProps) => {
-  console.log(movies);
-
+const Navbar = ({ children }: ChildrenProps) => {
   return (
     <div>
       <nav className="nav-bar">
         <Logo />
-        <Search />
-        <NumResults movies={movies} />
+        {children}
       </nav>
     </div>
   );

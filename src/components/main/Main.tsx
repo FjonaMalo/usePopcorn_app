@@ -1,14 +1,9 @@
-import { MoviesMainProps } from "../../types";
-import ListBox from "./ListBox";
-import WatchedBox from "./WatchedBox";
+import { ChildrenProps } from "../../types";
 
-const Main = ({ movies }: MoviesMainProps) => {
+const Main = ({ children }: ChildrenProps) => {
   return (
     <div>
-      <main className="main">
-        <ListBox movies={movies} />
-        <WatchedBox />
-      </main>
+      <main className="main">{children}</main>
     </div>
   );
 };

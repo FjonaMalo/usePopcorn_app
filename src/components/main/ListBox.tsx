@@ -1,10 +1,7 @@
 import { useState } from "react";
-import MovieList from "./movies/MovieList";
-import { MoviesMainProps } from "../../types";
+import { ChildrenProps } from "../../types";
 
-const ListBox = ({ movies }: MoviesMainProps) => {
-  console.log(movies);
-
+const ListBox = ({ children }: ChildrenProps) => {
   const [isOpen1, setIsOpen1] = useState<boolean>(true);
   return (
     <div className="box">
@@ -14,7 +11,7 @@ const ListBox = ({ movies }: MoviesMainProps) => {
       >
         {isOpen1 ? "-" : "+"}
       </button>
-      {isOpen1 && <MovieList movies={movies} />}
+      {isOpen1 && children}
     </div>
   );
 };

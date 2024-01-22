@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface MovieTypes {
   imdbID: string;
   Title: string;
@@ -24,4 +26,8 @@ export interface MovieTypeProps {
 
 export interface MoviesMainProps {
   movies: MovieTypes[];
+}
+
+export interface ChildrenProps {
+  children: ReactNode;
 }
