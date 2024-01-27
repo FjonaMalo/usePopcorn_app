@@ -10,11 +10,19 @@ const starStyle = {
 interface StarProps {
   onRate: () => void;
   full: boolean;
+  onHoverIn: () => void;
+  onHoverOut: () => void;
 }
 
-const Star = ({ onRate, full }: StarProps) => {
+const Star = ({ onRate, full, onHoverIn, onHoverOut }: StarProps) => {
   return (
-    <span role="button" style={starStyle} onClick={onRate}>
+    <span
+      role="button"
+      style={starStyle}
+      onClick={onRate}
+      onMouseEnter={onHoverIn}
+      onMouseLeave={onHoverOut}
+    >
       {full ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
