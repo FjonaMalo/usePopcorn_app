@@ -6,7 +6,6 @@ import { tempMovieData, tempWatchedData } from "./components/DummyData";
 import Search from "./components/navbar/Search";
 import NumResults from "./components/navbar/NumResults";
 import ListBox from "./components/main/ListBox";
-import WatchedBox from "./components/main/WatchedBox";
 import MovieList from "./components/main/movies/MovieList";
 import WatchedSummary from "./components/main/movies/WatchedSummary";
 import WatchedMoviesList from "./components/main/movies/WatchedMoviesList";
