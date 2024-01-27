@@ -16,8 +16,12 @@ const WatchedBox = () => {
       >
         {isOpen2 ? "-" : "+"}
       </button>
-      {isOpen2 && <WatchedSummary watched={watched} />}
-      <WatchedMoviesList watched={watched} />
+      {isOpen2 && (
+        <>
+          <WatchedSummary watched={watched} />
+          <WatchedMoviesList watched={watched} />
+        </>
+      )}
     </div>
   );
 };

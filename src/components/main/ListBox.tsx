@@ -2,16 +2,13 @@ import { useState } from "react";
 import { ChildrenProps } from "../../types";
 
 const ListBox = ({ children }: ChildrenProps) => {
-  const [isOpen1, setIsOpen1] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
     <div className="box">
-      <button
-        className="btn-toggle"
-        onClick={() => setIsOpen1((open) => !open)}
-      >
-        {isOpen1 ? "-" : "+"}
+      <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
+        {isOpen ? "-" : "+"}
       </button>
-      {isOpen1 && children}
+      {isOpen && children}
     </div>
   );
 };
