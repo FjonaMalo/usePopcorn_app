@@ -11,21 +11,36 @@ const startContainerStyle = {
   display: "flex",
 };
 
-const textStyle = {
-  lineHeight: "1",
-  margin: "0",
-};
-
-interface maxRatingProp {
+interface MaxRatingProp {
   maxRating: number;
+  color: string;
+  size: number;
+  messages?: string[];
+  defaultRating: number;
+  onSetRating?: (rating: number) => void;
 }
 
-const StarRating = ({ maxRating = 5 }: maxRatingProp) => {
-  const [rating, setRating] = useState(0);
+const StarRating = ({
+  maxRating,
+  color,
+  size,
+  messages = [],
+  defaultRating = 0,
+  onSetRating = () => {},
+}: MaxRatingProp) => {
+  const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
-  const handleRating = (rating: React.SetStateAction<number>) => {
+  const handleRating = (rating: number) => {
     setRating(rating);
+    onSetRating(rating);
+  };
+
+  const textStyle = {
+    lineHeight: "1",
+    margin: "0",
+    color,
+    fontSize: `${size / 1.5}px`,
   };
 
   return (
@@ -38,10 +53,16 @@ const StarRating = ({ maxRating = 5 }: maxRatingProp) => {
             full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
             onHoverIn={() => setTempRating(i + 1)}
             onHoverOut={() => setTempRating(0)}
+            color={color}
+            size={size}
           />
         ))}
       </div>
-      <p style={textStyle}>{tempRating || rating || ""}</p>
+      <p style={textStyle}>
+        {messages.length === maxRating
+          ? messages[tempRating ? tempRating - 1 : rating - 1]
+          : tempRating || rating || ""}
+      </p>
     </div>
   );
 };
