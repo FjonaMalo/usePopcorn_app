@@ -7,19 +7,11 @@ export interface MovieTypes {
   Poster: string;
 }
 
-export interface WatchedMovieType extends MovieTypes {
-  runtime: number;
-  imdbRating: number;
-  userRating: number;
-}
-
 export interface WatchedProps {
-  watched: WatchedMovieType[];
+  watched: AddWatched[];
+  onDeleteWatched?: (id: string) => void;
 }
 
-export interface MovieProps {
-  watched: MovieTypes[];
-}
 export interface MovieTypeProps {
   movie: MovieTypes;
   onSelectMovie: (id: string) => void;
@@ -38,13 +30,23 @@ export interface ChildrenProps {
 }
 
 export interface MovieDetailsObject {
+  imdbID: string;
   Title?: string;
   Poster?: string;
   Runtime?: string;
-  imdbRating?: string;
+  imdbRating?: string | number;
   Plot?: string;
   Released?: string;
   Actors?: string;
   Director?: string;
   Genre?: string;
+}
+
+export interface AddWatched {
+  imdbID: string;
+  poster: string | undefined;
+  imdbRating: number;
+  runtime: number;
+  title: string | undefined;
+  userRating: number;
 }

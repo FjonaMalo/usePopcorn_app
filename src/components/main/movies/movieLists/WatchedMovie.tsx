@@ -1,10 +1,17 @@
-import { WatchedMovieType } from "../../../../types";
+import { AddWatched } from "../../../../types";
 
-const WatchedMovie = ({ movie }: { movie: WatchedMovieType }) => {
+interface WatchedMovieProps {
+  movie: AddWatched;
+  onDeleteWatched: (id: string) => void;
+}
+
+const WatchedMovie = ({ movie, onDeleteWatched }: WatchedMovieProps) => {
+  console.log(movie);
+
   return (
     <li>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
+      <img src={movie.poster} alt={`${movie.title} poster`} />
+      <h3>{movie.title}</h3>
       <div>
         <p>
           <span>⭐</span>
@@ -16,8 +23,14 @@ const WatchedMovie = ({ movie }: { movie: WatchedMovieType }) => {
         </p>
         <p>
           <span>⌛</span>
-          <span>{movie.runtime}</span>
+          <span>{movie.runtime} min</span>
         </p>
+        <button
+          className="btn-delete"
+          onClick={() => onDeleteWatched(movie.imdbID)}
+        >
+          X
+        </button>
       </div>
     </li>
   );

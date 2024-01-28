@@ -8,7 +8,7 @@ import ListBox from "./components/main/ListBox";
 import MovieList from "./components/main/movies/MovieList";
 import WatchedSummary from "./components/main/movies/WatchedSummary";
 import WatchedMoviesList from "./components/main/movies/WatchedMoviesList";
-import { WatchedMovieType } from "./types";
+import { AddWatched } from "./types";
 import Loader from "./components/handleFetching/Loader";
 import ErrorMessage from "./components/handleFetching/ErrorMessage";
 import MovieDetails from "./components/main/movies/movieLists/MovieDetails";
@@ -18,7 +18,7 @@ const KEY = "ac047b87";
 function App() {
   const [query, setQuery] = useState<string>("inception");
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState<WatchedMovieType[]>([]);
+  const [watched, setWatched] = useState<AddWatched[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState("");
@@ -29,6 +29,14 @@ function App() {
 
   const handleCloseMovie = () => {
     setSelectedId("");
+  };
+
+  const handleAddWatched = (movie: AddWatched) => {
+    setWatched((watched) => [...watched, movie]);
+  };
+
+  const handleDeleteWatched = (id: string) => {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   };
 
   useEffect(() => {
@@ -84,11 +92,16 @@ function App() {
             <MovieDetails
               selectedId={selectedId}
               onCloseMovie={handleCloseMovie}
+              onAddWatched={handleAddWatched}
+              watched={watched}
             />
           ) : (
             <>
               <WatchedSummary watched={watched} />
-              <WatchedMoviesList watched={watched} />
+              <WatchedMoviesList
+                watched={watched}
+                onDeleteWatched={handleDeleteWatched}
+              />
             </>
           )}
         </ListBox>
