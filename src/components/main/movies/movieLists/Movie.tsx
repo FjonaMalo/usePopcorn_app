@@ -1,8 +1,8 @@
 import { MovieTypeProps } from "../../../../types";
 
-const Movie = ({ movie }: MovieTypeProps) => {
+const Movie = ({ movie, onSelectMovie }: MovieTypeProps) => {
   return (
-    <li key={movie.imdbID}>
+    <li key={movie.imdbID} onClick={() => onSelectMovie(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title}`} />
       <h3>{movie.Title}</h3>
       <div>

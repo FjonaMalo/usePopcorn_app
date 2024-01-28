@@ -22,10 +22,15 @@ export interface MovieProps {
 }
 export interface MovieTypeProps {
   movie: MovieTypes;
+  onSelectMovie: (id: string) => void;
 }
 
+export interface NumResultsProps {
+  movies: MovieTypes[];
+}
 export interface MoviesMainProps {
   movies: MovieTypes[];
+  onSelectMovie: (id: string) => void;
 }
 
 export interface ChildrenProps {

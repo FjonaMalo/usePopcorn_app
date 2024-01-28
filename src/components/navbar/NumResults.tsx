@@ -1,6 +1,6 @@
-import { MoviesMainProps } from "../../types";
+import { NumResultsProps } from "../../types";
 
-const NumResults = ({ movies }: MoviesMainProps) => {
+const NumResults = ({ movies }: NumResultsProps) => {
   return (
     <p className="num-results">
       Found <strong>{movies.length}</strong> results
