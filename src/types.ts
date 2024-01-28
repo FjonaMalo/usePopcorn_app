@@ -36,3 +36,15 @@ export interface MoviesMainProps {
 export interface ChildrenProps {
   children: ReactNode;
 }
+
+export interface MovieDetailsObject {
+  Title?: string;
+  Poster?: string;
+  Runtime?: string;
+  imdbRating?: string;
+  Plot?: string;
+  Released?: string;
+  Actors?: string;
+  Director?: string;
+  Genre?: string;
+}

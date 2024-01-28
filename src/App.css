@@ -41,7 +41,7 @@ body {
 
 .main {
   margin-top: 2.4rem;
-  height: calc(130vh);
+  height: calc(140vh);
   display: flex;
   gap: 2.4rem;
   justify-content: center;
