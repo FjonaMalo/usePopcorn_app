@@ -26,7 +26,7 @@ const WatchedSummary = ({ watched }: WatchedProps) => {
           </p>
           <p>
             <span>⌛</span>
-            <span>{avgRuntime}</span>
+            <span>{avgRuntime} min</span>
           </p>
         </div>
       </div>

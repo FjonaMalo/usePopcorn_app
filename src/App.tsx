@@ -15,6 +15,7 @@ import ErrorMessage from "./components/handleFetching/ErrorMessage";
 const KEY = "ac047b87";
 
 function App() {
+  const [query, setQuery] = useState<string>("");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState<WatchedMovieType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,8 +26,9 @@ function App() {
     const fetchMovies = async () => {
       try {
         setIsLoading(true);
+        setError("");
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${search}`
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
         );
 
         if (!res.ok)
@@ -44,13 +46,20 @@ function App() {
         setIsLoading(false);
       }
     };
+
+    if (query.length < 3) {
+      setMovies([]);
+      setError("");
+      return;
+    }
+
     fetchMovies();
-  }, []);
+  }, [query]);
 
   return (
     <div>
       <Navbar>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </Navbar>
       <Main>

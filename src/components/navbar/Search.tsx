@@ -1,7 +1,9 @@
-import { useState } from "react";
+interface SearchProps {
+  query: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const Search = () => {
-  const [query, setQuery] = useState<string>("");
+const Search = ({ query, setQuery }: SearchProps) => {
   return (
     <div>
       <input
