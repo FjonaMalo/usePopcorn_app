@@ -9,7 +9,8 @@ import MovieList from "./components/main/movies/MovieList";
 import WatchedSummary from "./components/main/movies/WatchedSummary";
 import WatchedMoviesList from "./components/main/movies/WatchedMoviesList";
 import { WatchedMovieType } from "./types";
-import Loader from "./Loader";
+import Loader from "./components/handleFetching/Loader";
+import ErrorMessage from "./components/handleFetching/ErrorMessage";
 
 const KEY = "ac047b87";
 
@@ -17,15 +18,31 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState<WatchedMovieType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState("");
+  const search = "shrek";
 
   useEffect(() => {
     const fetchMovies = async () => {
-      setIsLoading(true);
-      const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=shrek`);
-      const data = await res.json();
-      setMovies(data.Search);
-      console.log(data.Search);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${search}`
+        );
+
+        if (!res.ok)
+          throw new Error("Something wen wrong with fetching movies");
+
+        const data = await res.json();
+        if (data.Response === "False") throw new Error("Movie not found");
+
+        console.log(data);
+        setMovies(data.Search);
+      } catch (err: any) {
+        console.error(err.message);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchMovies();
   }, []);
@@ -38,7 +55,9 @@ function App() {
       </Navbar>
       <Main>
         <ListBox>
-          {isLoading ? <Loader /> : <MovieList movies={movies} />}
+          {isLoading && <Loader />}
+          {!isLoading && !error && <MovieList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
         </ListBox>
         <ListBox>
           <WatchedSummary watched={watched} />
