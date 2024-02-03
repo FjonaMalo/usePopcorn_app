@@ -54,7 +54,10 @@ const MovieDetails = ({
     getMovieDetails();
   }, [selectedId]);
 
-  console.log(movie);
+  useEffect(() => {
+    if (!title) return;
+    document.title = `Movie | ${title}`;
+  }, [title]);
 
   const handleAdd = () => {
     const newWatchedMovie: AddWatched = {
