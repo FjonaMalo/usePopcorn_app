@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AddWatched, MovieDetailsObject } from "../../../../types";
 import StarRating from "../../../starsRating/StarRating";
 import Loader from "../../../handleFetching/Loader";
+import { useKey } from "../../../../useKey";
 
 const KEY = "ac047b87";
 
@@ -23,6 +24,8 @@ const MovieDetails = ({
   const [userRating, setUserRating] = useState(0);
 
   const countRef = useRef(0);
+
+  useKey("Escape", onCloseMovie);
 
   useEffect(() => {
     if (userRating) {
@@ -61,19 +64,6 @@ const MovieDetails = ({
     };
     getMovieDetails();
   }, [selectedId]);
-
-  useEffect(() => {
-    const callback = (e: { code: string }) => {
-      if (e.code === "Escape") {
-        onCloseMovie();
-      }
-    };
-    document.addEventListener("keydown", callback);
-
-    return () => {
-      document.removeEventListener("keydown", callback);
-    };
-  }, []);
 
   useEffect(() => {
     if (!title) return;
