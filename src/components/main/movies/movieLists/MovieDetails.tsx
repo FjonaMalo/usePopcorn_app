@@ -55,9 +55,21 @@ const MovieDetails = ({
   }, [selectedId]);
 
   useEffect(() => {
+    const callback = (e: { code: string }) => {
+      if (e.code === "Escape") {
+        onCloseMovie();
+      }
+    };
+    document.addEventListener("keydown", callback);
+
+    return () => {
+      document.removeEventListener("keydown", callback);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!title) return;
     document.title = `Movie | ${title}`;
-
     return () => {
       document.title = "usePopcorn";
     };

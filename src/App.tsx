@@ -16,7 +16,7 @@ import MovieDetails from "./components/main/movies/movieLists/MovieDetails";
 const KEY = "ac047b87";
 
 function App() {
-  const [query, setQuery] = useState<string>("inception");
+  const [query, setQuery] = useState<string>("");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState<AddWatched[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -60,8 +60,8 @@ function App() {
         setMovies(data.Search);
         setError("");
       } catch (err: any) {
-        console.error(err.message);
         if (err.name !== "AbortError") {
+          console.log(err.message);
           setError(err.message);
         }
       } finally {
@@ -75,7 +75,9 @@ function App() {
       return;
     }
 
+    handleCloseMovie();
     fetchMovies();
+
     return () => {
       controller.abort();
     };
