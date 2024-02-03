@@ -49,4 +49,5 @@ export interface AddWatched {
   runtime: number;
   title: string | undefined;
   userRating: number;
+  countRatingDecisions?: number;
 }
