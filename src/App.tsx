@@ -13,17 +13,17 @@ import Loader from "./components/handleFetching/Loader";
 import ErrorMessage from "./components/handleFetching/ErrorMessage";
 import MovieDetails from "./components/main/movies/movieLists/MovieDetails";
 import { useMovies } from "./useMovies";
+import { useLocalStorageState } from "./useLocalStorageState";
 
 function App() {
   const [query, setQuery] = useState<string>("");
   const [selectedId, setSelectedId] = useState("");
-  const storedValue = localStorage.getItem("watched");
-  const initialWatchedState: AddWatched[] = storedValue
-    ? JSON.parse(storedValue)
-    : [];
-  const [watched, setWatched] = useState<AddWatched[]>(initialWatchedState);
-
   const { movies, isLoading, error } = useMovies(query, handleCloseMovie);
+
+  const [watched, setWatched] = useLocalStorageState<AddWatched[]>(
+    [],
+    "watched"
+  );
 
   const handleSelectMovie = (id: string) => {
     setSelectedId((selectedId) => (id === selectedId ? "" : id));
@@ -40,10 +40,6 @@ function App() {
   const handleDeleteWatched = (id: string) => {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   };
-
-  useEffect(() => {
-    localStorage.setItem("watched", JSON.stringify(watched));
-  }, [watched]);
 
   return (
     <div>
