@@ -57,6 +57,10 @@ const MovieDetails = ({
   useEffect(() => {
     if (!title) return;
     document.title = `Movie | ${title}`;
+
+    return () => {
+      document.title = "usePopcorn";
+    };
   }, [title]);
 
   const handleAdd = () => {
